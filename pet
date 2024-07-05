@@ -1,0 +1,32 @@
+<?php
+
+    include_once('./vendor/env/env.php');
+    include_once('./vendor/command/command.php');
+
+    use Command\Command;
+    
+    $DIR  = __DIR__;
+    
+    $option = [];
+
+    if($argc > 1){
+        for ($i=1; $i< $argc; $i++) 
+        { 
+            $option[] =  $argv[$i];
+        }
+    }
+
+
+    if(count($option) == 0)
+        die('Not arguments console');
+
+
+    switch($option[0]){
+        case 'serve-apache': Command::serve($DIR); break;
+        case 'srv': Command::serve($DIR); break;
+        case 'serve':Command::serveLocal($DIR); break;
+        case 'controller:make':Command::make($option[0], $option[1], $DIR); break;
+    }
+
+
+?>

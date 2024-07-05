@@ -1,0 +1,13 @@
+/*!***********************************************************************************************************!*\
+  !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/sass-loader/dist/cjs.js!./CSS/style.scss ***!
+  \***********************************************************************************************************/
+body {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  color: blue;
+}

@@ -1,0 +1,17 @@
+RewriteEngine On
+RewriteBase /
+DirectoryIndex include.autoload.php
+
+#Тестировал
+#RewriteRule ^(.+)$ view/include.autoload.php
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^(.+)$ view/include.autoload.php
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.+)$ view/include.autoload.php
+#RewriteCond %{REQUEST_URI} /
+
+RewriteRule ^/* include.autoload.php
+
+#ErrorDocument 404 view/include.autoload.php
+#ErrorDocument 301 view/include.autoload.php
+#ErrorDocument 500 view/include.autoload.php
