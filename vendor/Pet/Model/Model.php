@@ -9,9 +9,12 @@ class Model extends DB{
     static private $search = [];
     static private $nameFunction = '';
     static private $valueFunction = null;
+    public $insert = false;
+    public $table = 'post';
 
     public function find(array $column = [] , $cross = "AND")
     {
+        if(!$this->connect()) return $this->error;
 
         $select = [];
 
@@ -42,10 +45,10 @@ class Model extends DB{
             $find = $this->find(Model::$search);
 
             if(count($find) == 0){
-    
-                $this->insert($findUpOrIn);
-
+                
                 Model::$search = [];
+               $this->insert($findUpOrIn);
+
                 return 'insert';
 
             }else{
@@ -100,9 +103,20 @@ class Model extends DB{
         }
     }
 
-    public function search($search){
-
-        Model::$search = $search;
+    public function search($search)
+    {
+        $arg = func_get_args();
+        if(count($arg) == 1 && gettype($arg[0]) == 'array'){
+            Model::$search = $search;
+        }else{
+            $sr = [];
+            foreach($arg as $name){
+                if(array_key_exists($name, Model::$valueFunction)){
+                  $sr[$name] =   Model::$valueFunction[$name];
+                }
+            }
+            Model::$search = $sr;
+        }
 
         $FrontClasses = new FrontClasses;
 
@@ -110,7 +124,6 @@ class Model extends DB{
      }
 
 
-     
     public function findAndInset($findInsert):bool
     {
 

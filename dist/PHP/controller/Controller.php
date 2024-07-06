@@ -6,17 +6,12 @@ use Pet\Model\Model;
 
 class ControllerStart extends Controller{
        static function index(){
-        //  header('Content-type: text/code; charset=UTF-8;');
-        //  echo '<br>';
+        
+          // dd($_SERVER);
          $DB = new Model();
-         $DB->table = 'post';
 
-          $res =  $DB->findUpOrIn([ 'text'=>"Новая запись id 1",
-                                     "title"=>"Пустошь",
-                                      "date"=>date('Y-m-d')
-                                   ])->search(["text" => "Hello"]);
+          $res =  $DB->findUpOrIn(['text'=> "WhatsApp 154r5656gdf", "title"=>"Пустошь"])->search("title");
 
-          print_r($res);
         }
 
         
