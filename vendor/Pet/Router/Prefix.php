@@ -13,12 +13,12 @@ class Prefix{
 
 
     function name($name){
-        Router::$Route[count(Router::$Route) - 1]['name'] = $name;
+        end(Router::$Route)['name'] = $name;
         return $this;
     }
     
     function group($name){
-        Router::$Route[count(Router::$Route) - 1]['group'] = $name;
+        end(Router::$Route)['group'] = $name;
         return $this;
     }
 

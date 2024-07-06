@@ -2,28 +2,31 @@
 namespace Pet\Session;
 
 class Session{
+
     private $session;
     private $session_folder;
     public string $id;
-
 
     public function __construct() {
 
        $this->session = SESSION;
        $this->session_folder = SESSION_FOLDER;
+
        session_start([
-        'name'=>"PETSESSION"
-       ]);
+          'name'=>"PETSESSION"
+        ]);
 
     }
 
-    function creade(){
+    // function creade(){
 
-    }
+    // }
 
     public function set($data = []){
+
         foreach($data as $key => $value) $_SESSION[$key] = $value;
         if($this->session == 'file'){
+       
             $this->setFile($data);
         }
 
@@ -38,6 +41,7 @@ class Session{
     }
 
     private function setFile($data = []){
+
         $DIR = __DIR__ . "\\..\\..\\..\\" . $this->session_folder;
         if(!is_dir($DIR))mkdir($DIR);
         if(!file_exists($DIR ."\\session.json")) file_put_contents($DIR . "\\session.json",'{ "data":[] } ');
@@ -46,12 +50,12 @@ class Session{
         file_put_contents($DIR . "\\session.json", json_encode($file));
     }
 
-    private function getFile()
-    {
+    // private function getFile()
+    // {
 
         
     
-    }
+    // }
 
 }
 ?>

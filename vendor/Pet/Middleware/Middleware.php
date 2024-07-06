@@ -3,129 +3,120 @@
 
 namespace Pet\Middleware;
 
+use Pet\FrontClasses\FrontClasses;
 use Pet\Request\Request;
 use Pet\Router\Router;
 
 class Middleware{
+    /**
+     *  Объект прослоки запросов 
+     *  Хранит array(
+     *               middleware =>[class, metchod?]||funtion   
+     *               group?=> string || all
+     *               name?=> string
+     *              )
+     *          
+     *            
+     */ 
+    static  array  $Middleware = [];
 
-    static public array  $Middleware = [];
-    public Router $Router;
-    static $data = [];
 
-
-    public function __construct(Router $Router) {
-        $this->Router = $Router;
-    }
-
-
-    public function group($name):Router{
-        // print_r(Middleware::$data);
-        // exit;
-        Middleware::$data['group'] = $name;
-        return  $GLOBALS['App']->Router;
-    }
-
-    public function set($Routers){
-        $Roters = func_get_args();
-        foreach($Roters as $Rout){
-            Router::$Route[$Rout->id]['group'] = Middleware::$data['group'];
-        }
-
-        $GLOBALS['App']->Router->setMiddleware(Middleware::$data);
-        Middleware::$data = [];
-    }
-
-    static function middleware($Middleware):Router{
-        Middleware::$data = ['middleware'=>$Middleware];
-        return  $GLOBALS['App']->Router;
-    }
-
-    //[[name?="", group?="", middleware = [class , method]]]
-    public function setMiddleware($array = [])
+    public function __construct()
     {
-        Middleware::$Middleware[] = $array;
-        return $this->Router;
+
     }
-  
-    // проверяет аттрибуты в прослойки
-    private function isAttr($connect){
+
+    public function name($name): Middleware
+    {
+        $len = count(Middleware::$Middleware) - 1;
+        Middleware::$Middleware[$len]['name'] = $name;
+        return  $this;
+    }
+
+
+    public function group($name):Middleware
+    {
+        $len = count(Middleware::$Middleware) - 1;
+        Middleware::$Middleware[$len]['group'] = $name;
+       
+        return  $this;
+    }
+
+    public function setRout($Routers)
+    {
+
+        $Roters = func_get_args();
+        $len = count(Middleware::$Middleware) - 1;
+        foreach($Roters as $Prefix)
+
+            Router::$Route[$Prefix->id]['group'] =  Middleware::$Middleware[$len]['group'];
+    }
+
+
+    public function set($middleware = [])
+    {
+        Middleware::$Middleware[] = ['middleware'=> $middleware];
+        return $this;
+    }
+    
+
+
+
+    // проверяет аттрибуты в middleware
+    private function isAttr($connect)
+    {
         if(!array_key_exists('middleware', $connect) ) return false;
+
         if(count($connect['middleware']) == 0) return false;
         return true;
+
     }
 
-    public function generateMiddleware($Rout, Request &$Request )
+
+
+    public function reconciliation($Rout, Request &$Request )
     {
-    //    dd($Rout);
-       
         foreach(Middleware::$Middleware as $key => $connect){
+            
             if(!$this->isAttr($connect)) continue;
- 
-           $Group = $this->separate('group', $Rout, $connect);
 
-            if ($Group == 'function'){
-                return $connect['middleware'][0]($Request);
+            $FrontClasses = new FrontClasses();
+
+            if($this->separate('group', $Rout, $connect)){
+              $FrontClasses->classStarted($connect['middleware'], $Request);
             }
 
-            if($Group == 1){
-                    return call_user_func($connect['middleware'], $Request);
+            if($this->separate('name', $Rout, $connect)){
+              $FrontClasses->classStarted($connect['middleware'], $Request);
             }
 
-            if($Group > 1){
-                foreach($connect['middleware'] as $middle){
-                  return call_user_func($middle, $Request);
-                }
-            }
-
-            $Name = $this->separate('name', $Rout, $connect);
-
-            if ($Name == 'function'){
-                return $connect['middleware'][0]($Request);
-            }
-
-            if ($Name == 1)
-                return call_user_func($connect['middleware'], $Request);
-
-            if ($Name > 1) {
-                foreach ($connect['middleware'] as $middle) {
-                 return call_user_func($middle, $Request);
-                }
-            }
         }
     }
 
 
-    private function separate($name , $Rout, $connect){
+
+    private function separate($name , $Rout, $connect):bool{
 
         if(array_key_exists($name, $connect)){
 
-            if($name == 'group' && strtolower($connect[$name]) == 'all') return $this->typeMiddlevare($connect);
+            if($name == 'group' && strtolower($connect[$name]) == 'all')
+                return true;
 
-            if (array_key_exists($name, $Rout)){
+            if (array_key_exists($name, $Rout) && 
+                $Rout[$name] == $connect[$name])
 
-                if($Rout[$name] == $connect[$name]){
-                    return $this->typeMiddlevare($connect);
-                }
-       
-             }
-        }
+                return true;
+            }
 
         return false;
     }
 
+     static function middleware($middleware): Middleware{
 
-    private function typeMiddlevare($connect){
-        
-        if(gettype($connect['middleware']) == 'array'){
-            if(gettype($connect['middleware'][0]) == 'string') return 1;
-            if(gettype($connect['middleware'][0]) == 'array') return count($connect['middleware']);
-        }
-
-        if(gettype($connect['middleware'][0]) == 'object'){
-            if(is_callable($connect['middleware'][0], false)) return 'function';
-            if(is_callable($connect['middleware'], false)) return 1;
-        }
-    }
+           $class = new Middleware();
+           $class->set($middleware);
+           return $class;
+     }
 }
 
 ?>

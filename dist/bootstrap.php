@@ -3,10 +3,10 @@
 use Pet\Application;
 
 require_once(__DIR__.'\\..\\vendor\\autoload.php');
-Application::started()->middleware(
-['group' =>'Auth', "middleware"=> [] ],
-// ['group' => 'User', "middleware" => [AuthController::class, 'user']],
-)
+require_once(__DIR__.'\\PHP\\controller\\Controller.php');
+require_once(__DIR__ . '\\PHP\\controller\\AuthController.php');
+
+Application::started()->middleware()
 ->fileRouter(__DIR__.'/PHP/router/router.php')
 ->query();
 

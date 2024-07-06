@@ -12,6 +12,7 @@ class  MiddlewareCSRF extends Middleware{
     
 
     protected $method = ['POST', 'PUT', "DELETE"];
+
         public function __construct() {
             $this->Session = new Session();
             
@@ -38,15 +39,15 @@ class  MiddlewareCSRF extends Middleware{
 
     }
 
-    private function generateCSRF():array{
+    private function generateCSRF():array
+    {
           $uniqid = uniqid().uniqid();
+
           $date = date("Y-m-d");
+
           $time = date('H:i:s');
+          
           return ['date' => $date, "time" => $time, 'hash' => password_hash($uniqid, PASSWORD_DEFAULT)];
-    }
-
-    private function getTokenServer(){
-
     }
 
 }

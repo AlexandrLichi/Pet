@@ -7,22 +7,28 @@ use Pet\Router\Router;
 class Application{
 
     public Router $Router;
+    private $csrf;
 
     public function __construct() {
         $this->Router = new Router();
-        $this->isTokenMiddleware();
+        $this->csrf = [MiddlewareCSRF::class,'check'];
     }
 
-    // ставим проверку CSRF токен
-    private function isTokenMiddleware(){
-        $this->Router->setMiddleware(['group'=>'All', 'middleware'=>[new MiddlewareCSRF, 'check']]);
-    } 
+
 
     function middleware($Midd = 0){
+        
         $Midd = func_get_args();
+
+        // default
+        $Midd[] = $this->csrf;
+
         foreach($Midd as $middleware){
-            $this->Router->setMiddleware($middleware);
+           
+             Router::middleware($middleware)->group('All');
+          
         }
+
         return $this->Router;
     }
 

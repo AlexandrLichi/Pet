@@ -2,21 +2,22 @@
 
 namespace Pet\Router;
 
+use Pet\FrontClasses\FrontClasses;
 use Pet\Middleware\Middleware;
  
 use Pet\Request\Request;
 use Pet\Router\Prefix as RouterPrefix;
 
+use Pet\Router\methods;
 
 class Router extends Middleware{
 
     protected Request $Request;
-    static public $Route = [];
+    static  $Route = [];
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->Request = new Request();
-        parent::__construct($this);
-        
     }
 
 
@@ -35,6 +36,7 @@ class Router extends Middleware{
 
 
     public function query(){
+      
         foreach(Router::$Route as $Rout){
             
             if($Rout["method"] == $this->Request->method ){
@@ -42,11 +44,11 @@ class Router extends Middleware{
                 if($Rout["path"] == $this->Request->path || $this->Request->path ==  $this->mutable_path($Rout["path"])){
                     $this->Request->Router = $this;
 
-                    parent::generateMiddleware($Rout, $this->Request);
+                    parent::reconciliation($Rout, $this->Request);
 
+                    $FrontClasses = new FrontClasses();
 
-                    if(gettype($Rout['callback']) == 'object') $Rout['callback']($this->Request);
-                    if(gettype($Rout['callback']) == 'array') call_user_func($Rout['callback'], $this->Request);
+                    $FrontClasses->classStarted($Rout['callback'], $this->Request);
                     exit;
                 }
 
@@ -94,7 +96,6 @@ class Router extends Middleware{
 
     }
 
-
    public function fileRouter(array|string $files = []){
 
         if(gettype($files) == 'array'){
@@ -106,11 +107,5 @@ class Router extends Middleware{
         return $this;
     }
 
-
-    static function middleware($param):Router{
-
-        return Middleware::middleware($param);
-
-    }
 }
 ?>
