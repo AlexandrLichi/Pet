@@ -15,11 +15,10 @@ class  MiddlewareCSRF extends Middleware{
 
         public function __construct() {
             $this->Session = new Session();
-            
         }
 
     function check(Request $Request){
-        // echo $this->Session->get('token');
+
 
         if(in_array($Request->method, $this->method)){
 
@@ -49,5 +48,5 @@ class  MiddlewareCSRF extends Middleware{
           
           return ['date' => $date, "time" => $time, 'hash' => password_hash($uniqid, PASSWORD_DEFAULT)];
     }
-
+    
 }

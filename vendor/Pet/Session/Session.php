@@ -4,14 +4,13 @@ namespace Pet\Session;
 class Session{
 
     private $session;
-    private $session_folder;
     public string $id;
-
+    private string $dir ;
     public function __construct() {
 
        $this->session = SESSION;
-       $this->session_folder = SESSION_FOLDER;
-
+       $this->dir = __DIR__ . "\\..\\..\\..\\" . SESSION_FOLDER;
+       
        session_start([
           'name'=>"PETSESSION"
         ]);
@@ -25,9 +24,19 @@ class Session{
     public function set($data = []){
 
         foreach($data as $key => $value) $_SESSION[$key] = $value;
+
+        $data['id'] = session_id();
+
         if($this->session == 'file'){
-       
-            $this->setFile($data);
+            
+            if(!$this->replace($data['id'], $data)){
+
+              $new =  $this->getFile();
+              $new->data[] = $data;
+              $this->setFile($new);
+
+
+            }
         }
 
         if ($this->session == 'base'){
@@ -36,26 +45,57 @@ class Session{
     }
 
     public function get($key):string{
+
         if(!array_key_exists($key, $_SESSION)) return '';
+
         return $_SESSION[$key];
     }
 
-    private function setFile($data = []){
+    private function getFile(){
 
-        $DIR = __DIR__ . "\\..\\..\\..\\" . $this->session_folder;
-        if(!is_dir($DIR))mkdir($DIR);
-        if(!file_exists($DIR ."\\session.json")) file_put_contents($DIR . "\\session.json",'{ "data":[] } ');
-        $file = json_decode(file_get_contents($DIR . "\\session.json"));
-        $file->data[] = $data;
-        file_put_contents($DIR . "\\session.json", json_encode($file));
+        if(!is_dir($this->dir))mkdir($this->dir);
+        if(!file_exists($this->dir ."\\session.json")) file_put_contents($this->dir . "\\session.json",'{ "data":[] } ');
+        return json_decode(file_get_contents($this->dir . "\\session.json"));
+
     }
 
-    // private function getFile()
-    // {
 
-        
+    private function setFile($file){
+        file_put_contents($this->dir . "\\session.json", json_encode($file));
+     }
+
     
-    // }
 
+    private  function isId($id, $callbak = null):bool{
+
+        $file = $this->getFile();
+
+        foreach($file->data as $i => $session){
+
+            if(property_exists($session, 'id') && $session->id == $id){
+
+                if(!$callbak) $callbak($file, $i);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+    private  function replace($id, $data =[]):bool{
+
+       return  $this->isId($id, function($datafile , $i, $data){
+
+            foreach($data as $attr => $value){
+
+                $datafile->data[$i][$attr] = $value;
+                $this->setFile($datafile);
+            }
+
+        });
+
+    }
 }
 ?>

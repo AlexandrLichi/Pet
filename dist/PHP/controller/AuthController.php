@@ -5,7 +5,6 @@ use Pet\DataBase\DB;
 
  class AuthController { 
 
-   // New controller 
 
        function index(){
         echo 'Auth - сначала тест <br>';

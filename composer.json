@@ -7,9 +7,11 @@
     },
     "files": [
       "vendor/env/env.php",
+      "dist/PHP/conf/app.php",
       "dist/PHP/conf/router_conf.php",
       "dist/PHP/conf/db_conf.php",
       "dist/PHP/conf/session_conf.php",
+      "vendor/Pet/function/function.php",
       "vendor/Pet/ErListen/dump.php"
     ]
   },
