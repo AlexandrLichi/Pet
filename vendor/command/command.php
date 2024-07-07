@@ -1,5 +1,7 @@
 <?php
 namespace Command;
+
+use Pet\FrontClasses\FrontClasses;
 class Command{
 
 
@@ -62,26 +64,48 @@ class Command{
         echo "\033[01;31m Server stop apache \033[0m  ";
     }
 
-    static function make($comm, $name, $DIR){
+    static function make($name, $DIR){
 
-        $path = $DIR."\\".env('FOLDER_PROJECT','dist');
-        $pathInclude = $path."\\include.php";
-        $result = [];
+        $folder_project = env('FOLDER_PROJECT','dist');
 
-        if($comm == "controller:make"){
-            $include = file($pathInclude);
+        // $pathInclude = $path."\\include.php";
+        // $result = [];
 
-            foreach($include as $row){
-                $result[] = $row;
-                if(str_contains($row, 'autoload.php')){
-                    $result[] = "require_once('./PHP/controller/$name.php'); \n\r";
-                }
 
-            }
+        // if($comm == "controller:make"){
+        //     $include = file($pathInclude);
+        //     file_put_contents($pathInclude,implode('', $result));
+        /* $str = "<?php \n\r class $name { \n\r   // New controller \n\r\r\r\r\r   }\n\r\r ?>";
+             file_put_contents($path."\\PHP\\controller\\$name.php", $str);
+         } */
 
-            file_put_contents($pathInclude,implode('', $result));
-            $str = "<?php \n\r class $name { \n\r   // New controller \n\r\r\r\r\r   }\n\r\r ?>";
-            file_put_contents($path."\\PHP\\controller\\$name.php", $str);
+        if ($name[1] == "migrate:make") {
+            if(count($name) < 2) die("set migration [name]");
+
+             $Text = file_get_contents(__DIR__.'\\sample.mig.txt');
+             $Text = str_replace('{name}', $name[2], $Text);
+             $date = date('Ymd');
+
+             file_put_contents("$DIR\\$folder_project\\PHP\\{$date}-{$name[2]}.mig.php", $Text);
+
+            
+        }
+    }
+
+
+
+
+    static function migration($comm, $DIR, $method){
+
+        $folder_project = env('FOLDER_PROJECT');
+        $path = $DIR."\\".$folder_project."\\PHP\\";
+        $files = include_dir($path, ".mig.php");
+
+        foreach($files as $file){
+
+            preg_match("/[_A-Za-z]{1,}/", $file, $mcth);
+            $front = new FrontClasses(); 
+            $front->classStarted([$mcth[0], $method]);
         }
     }
 }

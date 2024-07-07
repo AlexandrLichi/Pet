@@ -8,6 +8,7 @@ use Pet\Request\Request;
 use Pet\Router\Router;
 
 class Middleware{
+
     /**
      *  Объект прослоки запросов 
      *  Хранит array(
@@ -17,8 +18,9 @@ class Middleware{
      *              )
      *          
      *            
-     */ 
-    static  array  $Middleware = [];
+     */
+    
+   private static  array  $Middleware = [];
 
 
     public function __construct()
@@ -53,7 +55,7 @@ class Middleware{
     }
 
 
-    public function set($middleware = [])
+    private function set($middleware = [])
     {
         Middleware::$Middleware[] = ['middleware'=> $middleware];
         return $this;

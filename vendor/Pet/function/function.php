@@ -2,7 +2,6 @@
 function search_file($path, $class = '')
 {
 
-
     foreach (scandir($path) as $dir) {
 
         if ($dir == ".." || $dir == '.') continue;
@@ -23,5 +22,30 @@ function search_file($path, $class = '')
             }
         }
     }
+}
+
+
+
+
+function  include_dir($path, $prefix):array{
+    $include = [];
+    foreach (scandir($path) as $dir) {
+
+        if ($dir == ".." || $dir == '.') continue;
+        $dir = $path . "\\" . $dir;
+        if (is_dir($dir)) {
+            include_dir($dir, $prefix);
+        }else{
+            if (is_readable($dir)) {
+                preg_match("/([_0-9a-zA-Z]{1,})$prefix/", $dir, $matches);
+                if(count($matches) != 0){
+                    $include[] = $matches[0];
+                    include_once($dir);
+                }
+            }
+        }
+    }
+
+    return $include;
 }
 ?>

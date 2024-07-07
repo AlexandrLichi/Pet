@@ -1,6 +1,6 @@
 <?php
 
-    include_once('./vendor/env/env.php');
+    include_once('./vendor/autoload.php');
     include_once('./vendor/command/command.php');
 
     use Command\Command;
@@ -10,22 +10,26 @@
     $option = [];
 
     if($argc > 1){
-        for ($i=1; $i< $argc; $i++) 
-        { 
-            $option[] =  $argv[$i];
-        }
+        $option = $argv;
+        unset($option[0]);
+    }else{
+        die('Not arguments console');
     }
 
 
-    if(count($option) == 0)
-        die('Not arguments console');
+// echo trim($argv[1]);
+    switch(trim($argv[1])){
 
-
-    switch($option[0]){
         case 'serve-apache': Command::serve($DIR); break;
         case 'srv': Command::serve($DIR); break;
         case 'serve':Command::serveLocal($DIR); break;
-        case 'controller:make':Command::make($option[0], $option[1], $DIR); break;
+
+        case 'controller:make':Command::make($option, $DIR); break;
+
+        case 'migrate:make': Command::make($option, $DIR);break;
+        case 'migrate': Command::migration($option, $DIR, "up"); break;
+        case 'rollback:migrate':Command::migration($option, $DIR, "back");break;
+        default: echo "no command";
     }
 
 

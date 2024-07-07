@@ -18,8 +18,8 @@ class FrontClasses{
             $this->isArrayClass($class, $method);
      
         if($this->isCallable($class, $method)){
+
             if($method)  return call_user_func([$class, $method], ...$argm);
-            
             return call_user_func($class, ...$argm);
 
         }else{

@@ -12,7 +12,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="./view/CSS/demo.css" />
+    <link rel="stylesheet" href="./view/CSS/style4.css" />
     <link rel="stylesheet" href="./view/CSS/templatemo-style.css">
 
     <script type="text/javascript" src="./view/js/modernizr.custom.86080.js"></script>
@@ -21,7 +21,9 @@
 
 <body>
 
-    <div id="particles-js"></div>
+    <div id="particles-js">
+       
+    </div>
 
     <ul class="cb-slideshow">
         <li></li>
@@ -32,11 +34,19 @@
         <li></li>
     </ul>
 
-    <div class="container-fluid">
-        <div class="row cb-slideshow-text-container ">
-            <div class="tm-content col-xl-6 col-sm-8 col-xs-8 ml-auto section">
-                <header class="mb-5">
-                    <h1>Pet</h1>
+
+<div class="container-fluid">
+    <div class="row cb-slideshow-text-container ">
+        <div class="tm-content col-xl-6 col-sm-8 col-xs-8 ml-auto section">
+            <header class="mb-5">
+                <div сlass="row">
+                <a href="./">Документация<a>
+                </div>
+                <br>
+                <br>
+                <br>
+                <h1>Pet</h1>
+                
                 </header>
                 <P class="mb-5">Flexible development environment. Create and don't think!</P>
 
