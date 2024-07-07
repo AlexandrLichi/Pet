@@ -10,9 +10,9 @@ class Model extends DB{
     static private $nameFunction = '';
     static private $valueFunction = null;
     public $insert = false;
-    public $table = 'post';
+    public $table = 'user';
 
-    public function find(array $column = [] , $cross = "AND")
+    public function find(array $column = [] , $cross = "AND"):Array
     {
         if(!$this->connect()) return $this->error;
 
@@ -23,6 +23,18 @@ class Model extends DB{
         }
 
         return $this->select([], implode(" $cross ", $select));
+    }
+
+    public function findJoin(array $column = [], $join = []){
+        if (!$this->connect()) return $this->error;
+
+        $select = [];
+
+        foreach ($column as $name => $value) {
+            $select[] = "`{$this->table}`.`{$name}`='{$this->escapeStr($value)}'";
+        }
+
+        return $this->select([], implode(" AND ", $select), $join);
     }
 
 

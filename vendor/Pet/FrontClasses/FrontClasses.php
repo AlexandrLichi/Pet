@@ -9,7 +9,7 @@ class FrontClasses{
     public function __construct() {
     }
 
-    public function classStarted($class, $argm = []){
+    public function classStarted($class, $argm = []):mixed{
 
             $argm = func_get_args();
 

@@ -1,6 +1,7 @@
 <?php 
 namespace controller\Auth;
 
+use Pet\Model\Model;
 
 use Pet\Request\Request;
 use Pet\Migration\Migration;
@@ -8,8 +9,10 @@ use Pet\Migration\Migration;
 
 
      function Auth(Request $request){
-      $Mig = new Migration();
-      $Mig->back();
+      $model = new Model();
+
+     $res = $model->findJoin(['id'=>1],['company'=>"company_id"]);
+     print_r($res);
       exit;
         // dd($request);
      }

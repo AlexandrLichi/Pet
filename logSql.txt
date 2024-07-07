@@ -1,0 +1,91 @@
+ CREATE TABLE  `pet-bd`.`user` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `user` VARCHAR(255) NOT NULL ,  `password` VARCHAR(255) NOT NULL ,  `email` VARCHAR(255) NOT NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company_id` INT(60) NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+ CREATE TABLE  `pet-bd`.`company` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `name` VARCHAR(255) NOT NULL ,  `api` VARCHAR(255) NOT NULL ,  `messange` INT(60) NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company` VARCHAR(255)  NULL DEFAULT NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+ALTER TABLE `user` ADD FOREIGN KEY (`company_id`) REFERENCES `pet-bd`.`company`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `pet-bd`.`user` ADD INDEX `company_id_ind` (`company_id`);
+ CREATE TABLE  `pet-bd`.`user` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `user` VARCHAR(255) NOT NULL ,  `password` VARCHAR(255) NOT NULL ,  `email` VARCHAR(255) NOT NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company_id` INT(60) NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+SHOW TABLES LIKE 'user'
+SHOW TABLES LIKE 'user'
+SHOW TABLES LIKE 'user'
+SHOW TABLES LIKE 'user'
+SHOW TABLES LIKE 'user'
+SHOW TABLES LIKE 'user'
+SHOW TABLES LIKE 'user'
+SELECT table_name FROM information_schema.tables
+                WHERE table_schema = 'pet-bd' AND table_name = 'user';'
+SELECT table_name FROM information_schema.tables
+                WHERE table_schema = 'pet-bd';'
+SELECT table_name FROM information_schema.tables
+                WHERE table_schema = 'pet-bd';c
+DESCRIBE user;
+SHOW TABLES LIKE 'user';
+SHOW TABLES LIKE 'user';
+SHOW TABLES LIKE 'company';
+SHOW TABLES LIKE 'user';
+SHOW TABLES LIKE 'company';
+ CREATE TABLE  `pet-bd`.`company` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `name` VARCHAR(255) NOT NULL ,  `api` VARCHAR(255) NOT NULL ,  `messange` INT(60) NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company` VARCHAR(255)  NULL DEFAULT NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+SHOW TABLES LIKE 'user';
+ CREATE TABLE  `pet-bd`.`user` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `user` VARCHAR(255) NOT NULL ,  `password` VARCHAR(255) NOT NULL ,  `email` VARCHAR(255) NOT NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company_id` INT(60) NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+SHOW TABLES LIKE 'company';
+ALTER TABLE `user` ADD FOREIGN KEY (`company_id`) REFERENCES `pet-bd`.`company`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `pet-bd`.`user` ADD INDEX `company_id_ind` (`company_id`);
+SHOW TABLES LIKE 'user';
+SHOW TABLES LIKE 'company';
+ALTER TABLE `user` ADD FOREIGN KEY (`company_id`) REFERENCES `pet-bd`.`company`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `pet-bd`.`user` ADD INDEX `company_id_ind` (`company_id`);
+SHOW TABLES LIKE 'user';
+SHOW TABLES LIKE 'company';
+ALTER TABLE `user` ADD FOREIGN KEY (`company_id`) REFERENCES `pet-bd`.`company`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `pet-bd`.`user` ADD INDEX `company_id_ind` (`company_id`);
+SHOW TABLES LIKE 'user';
+SHOW TABLES LIKE 'company';
+ALTER TABLE `user` ADD FOREIGN KEY (`company_id`) REFERENCES `pet-bd`.`company`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `pet-bd`.`user` ADD INDEX `company_id_ind` (`company_id`);
+ DROP TABLE `pet-bd`.`user`;
+ DROP TABLE `pet-bd`.`company`;
+SHOW TABLES LIKE 'user';
+ CREATE TABLE  `pet-bd`.`user` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `user` VARCHAR(255) NOT NULL ,  `password` VARCHAR(255) NOT NULL ,  `email` VARCHAR(255) NOT NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company_id` INT(60) NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+SHOW TABLES LIKE 'company';
+ CREATE TABLE  `pet-bd`.`company` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `name` VARCHAR(255) NOT NULL ,  `api` VARCHAR(255) NOT NULL ,  `messange` INT(60) NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company` VARCHAR(255)  NULL DEFAULT NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+ALTER TABLE `user` ADD FOREIGN KEY (`company_id`) REFERENCES `pet-bd`.`company`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `pet-bd`.`user` ADD INDEX `company_id_ind` (`company_id`);
+ DROP TABLE `pet-bd`.`user`;
+ DROP TABLE `pet-bd`.`company`;
+SHOW TABLES LIKE 'user';
+ CREATE TABLE  `pet-bd`.`user` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `user` VARCHAR(255) NOT NULL ,  `password` VARCHAR(255) NOT NULL ,  `email` VARCHAR(255) NOT NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company_id` INT(60) NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+SHOW TABLES LIKE 'company';
+ CREATE TABLE  `pet-bd`.`company` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `name` VARCHAR(255) NOT NULL ,  `api` VARCHAR(255) NOT NULL ,  `messange` INT(60) NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company` VARCHAR(255)  NULL DEFAULT NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+ALTER TABLE `user` ADD FOREIGN KEY (`company_id`) REFERENCES `pet-bd`.`company`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `pet-bd`.`user` ADD INDEX `company_id_ind` (`company_id`);
+ DROP TABLE `pet-bd`.`user`;
+ DROP TABLE `pet-bd`.`company`;
+SHOW TABLES LIKE 'user';
+ CREATE TABLE  `pet-bd`.`user` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `user` VARCHAR(255) NOT NULL ,  `password` VARCHAR(255) NOT NULL ,  `email` VARCHAR(255) NOT NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company_id` INT(60) NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+SHOW TABLES LIKE 'company';
+ CREATE TABLE  `pet-bd`.`company` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `name` VARCHAR(255) NOT NULL ,  `api` VARCHAR(255) NOT NULL ,  `messange` INT(60) NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company` VARCHAR(255)  NULL DEFAULT NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+ALTER TABLE `user` ADD FOREIGN KEY (`company_id`) REFERENCES `pet-bd`.`company`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `pet-bd`.`user` ADD INDEX `company_id_ind` (`company_id`);
+ DROP TABLE `pet-bd`.`user`;
+ DROP TABLE `pet-bd`.`company`;
+SHOW TABLES LIKE 'user';
+ CREATE TABLE  `pet-bd`.`user` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `user` VARCHAR(255) NOT NULL ,  `password` VARCHAR(255) NOT NULL ,  `email` VARCHAR(255) NOT NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company_id` INT(60) NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+SHOW TABLES LIKE 'company';
+ CREATE TABLE  `pet-bd`.`company` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `name` VARCHAR(255) NOT NULL ,  `api` VARCHAR(255) NOT NULL ,  `messange` INT(60) NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company` VARCHAR(255)  NULL DEFAULT NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+ALTER TABLE `user` ADD FOREIGN KEY (`company_id`) REFERENCES `pet-bd`.`company`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `pet-bd`.`user` ADD INDEX `company_id_ind` (`company_id`);
+ DROP TABLE `pet-bd`.`user`;
+ DROP TABLE `pet-bd`.`company`;
+SHOW TABLES LIKE 'user';
+ CREATE TABLE  `pet-bd`.`user` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `user` VARCHAR(255) NOT NULL ,  `password` VARCHAR(255) NOT NULL ,  `email` VARCHAR(255) NOT NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company_id` INT(60) NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+SHOW TABLES LIKE 'company';
+ CREATE TABLE  `pet-bd`.`company` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `name` VARCHAR(255) NOT NULL ,  `api` VARCHAR(255) NOT NULL ,  `messange` INT(60) NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company` VARCHAR(255)  NULL DEFAULT NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+ALTER TABLE `user` ADD FOREIGN KEY (`company_id`) REFERENCES `pet-bd`.`company`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `pet-bd`.`user` ADD INDEX `company_id_ind` (`company_id`);
+ DROP TABLE `pet-bd`.`user`;
+ DROP TABLE `pet-bd`.`company`;
+SHOW TABLES LIKE 'user';
+ CREATE TABLE  `pet-bd`.`user` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `user` VARCHAR(255) NOT NULL ,  `password` VARCHAR(255) NOT NULL ,  `email` VARCHAR(255) NOT NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company_id` INT(60) NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+SHOW TABLES LIKE 'company';
+ CREATE TABLE  `pet-bd`.`company` ( `id` INT(60) NOT NULL AUTO_INCREMENT,   `name` VARCHAR(255) NOT NULL ,  `api` VARCHAR(255) NOT NULL ,  `messange` INT(60) NULL ,  `roles` VARCHAR(255)  NULL DEFAULT NULL ,  `company` VARCHAR(255)  NULL DEFAULT NULL ,  `date-time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,  PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'new table create';
+ALTER TABLE `user` ADD FOREIGN KEY (`company_id`) REFERENCES `pet-bd`.`company`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `pet-bd`.`user` ADD INDEX `company_id_ind` (`company_id`);
+

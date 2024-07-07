@@ -10,6 +10,15 @@ class Migration {
      
     }
 
+   public function setAfter(){
+        Schema::setAfter();
+
+        return Schema::$join;
+    }
+
+
+
+
     function up(){
 
         Schema::create("sort", function($table){

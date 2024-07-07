@@ -22,21 +22,27 @@ class DB{
     
     
 
-    function select(array $column = [], $where = 1)
+    function select(array $column = [], $where = 1, $join = [])
     {
        
 
         $query = '`'. $this->escape('` , `', $column).'`';
-        
+        $joinStr = '';
         if(count($column) == 0)  $query = "*";
-        
-        $querySelect =  sprintf("SELECT $query FROM {$this->table} WHERE $where");
-        $querySelect .= $this->limite();
 
-        // print_r($querySelect);
+        if(count($join) > 0){
+            $key = key($join);
+            $joinStr  = "JOIN `{$key}` ON `{$this->table}`.`{$join[$key]}` = `$key`.`id`";
+        }
+            $querySelect =  sprintf("SELECT $query FROM {$this->table} $joinStr WHERE $where");
+            $querySelect .= $this->limite();
+        print_r($querySelect);
+
         return $this->query($querySelect);
 
     }
+
+    
 
 
     

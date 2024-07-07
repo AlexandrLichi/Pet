@@ -97,26 +97,58 @@ class Command{
 
     static function migration($comm, $DIR, $method){
 
+       
+
         $folder_project = env('FOLDER_PROJECT');
         $path = $DIR."\\".$folder_project."\\PHP\\";
         $files = include_dir($path, ".mig.php");
 
+        
         foreach($files as $file){
 
             preg_match("/[_A-Za-z]{1,}/", $file, $mcth);
             $front = new FrontClasses(); 
             $front->classStarted([$mcth[0], $method]);
+
+            if($method == 'up'){
+
+              $tables =  $front->classStarted([$mcth[0], 'setAfter']);
+
+              if(in_array('-m', $comm)){
+
+                $sampleModel = file_get_contents(__DIR__."\\txt\\sample.model.txt");
+
+                foreach($tables as $name => $join){
+
+                    $Name = ucfirst($name);
+
+                    $Model = str_replace(['{name}'], $Name, $sampleModel);
+                    $Model = str_replace(['{table}'],'"'.$name.'"', $Model);
+                   
+                   
+                    $Model = str_replace(['{join}'],"['".implode("','",$join)."']", $Model);
+                    
+                    file_put_contents($path."\\model\\{$Name}.php", $Model);
+                }
+              }
+            }
         }
     }
+
+
     static function info()
     {
        
         $file = file(__DIR__."\\txt\\info.txt");
+
         foreach($file as $row){
+
             if(trim($row) == '') continue;
             $text = explode("--", $row);
             echo "\033[02;32m {$text[0]}\033[0m {$text[1]}";
+
         }
+
     }
 }
 ?>
