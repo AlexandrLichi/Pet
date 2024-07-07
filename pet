@@ -28,8 +28,10 @@
 
         case 'migrate:make': Command::make($option, $DIR);break;
         case 'migrate': Command::migration($option, $DIR, "up"); break;
-        case 'rollback:migrate':Command::migration($option, $DIR, "back");break;
-        default: echo "no command";
+        case 'rollback:migrate':Command::migration($option, $DIR, "back"); break;
+        case '-info':Command::info();break;
+        case '-help': Command::info(); break;
+        default: echo "no command ";
     }
 
 

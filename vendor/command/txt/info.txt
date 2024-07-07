@@ -1,0 +1,7 @@
+
+  [serve-apache] --      Starts your apache and changes httpd to your project
+  [serve] --             Command: Starts the built-in php server
+  [migrate:make] --      Creates migrations files mig.php
+  [migrate] --           Performs micratio
+  [rollback:migrate] --  rolls back migration
+  [-info, -help] --      info console command

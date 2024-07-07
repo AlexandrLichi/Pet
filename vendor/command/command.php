@@ -82,7 +82,7 @@ class Command{
         if ($name[1] == "migrate:make") {
             if(count($name) < 2) die("set migration [name]");
 
-             $Text = file_get_contents(__DIR__.'\\sample.mig.txt');
+             $Text = file_get_contents(__DIR__.'\\txt\\sample.mig.txt');
              $Text = str_replace('{name}', $name[2], $Text);
              $date = date('Ymd');
 
@@ -106,6 +106,16 @@ class Command{
             preg_match("/[_A-Za-z]{1,}/", $file, $mcth);
             $front = new FrontClasses(); 
             $front->classStarted([$mcth[0], $method]);
+        }
+    }
+    static function info()
+    {
+       
+        $file = file(__DIR__."\\txt\\info.txt");
+        foreach($file as $row){
+            if(trim($row) == '') continue;
+            $text = explode("--", $row);
+            echo "\033[02;32m {$text[0]}\033[0m {$text[1]}";
         }
     }
 }
