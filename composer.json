@@ -1,16 +1,7 @@
 {
   "name": "php-framework/pet",
   "description": "PHP framework",
-  "version": "1.0",
- "package":{
-      "name":"php-framework/pet",
-      "version":"1.0.0",
-      "soursce": {
-        "type": "git",
-        "url": "https://github.com/AlexandrLichi/Pet.git",
-        "reference": "master"
-      }
-    },
+  "version": "1.0.0",
   "autoload": {
     "psr-4": {
       "Pet\\": "vendor/Pet"
@@ -26,14 +17,9 @@
     ]
   },
   "minimum-stability": "dev",
-  "repositories": [
-    {
-      "url": "https://github.com/AlexandrLichi/Pet.git",
-      "type": "git"
-    }
-  ],
   "require": {
-    "php-framework/pet": "1.0",
-    "reference": "master"
+    "php": ">=8.2",
+    "another-vendor/package": "1.*"
   }
 }
+
