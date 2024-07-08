@@ -23,6 +23,6 @@
     }
   ],
   "require": {
-    "AlexandrLichi/Pet": "1.0"
+    "alexandrlichi/pet": "1.0"
   }
 }
