@@ -16,5 +16,13 @@
     ]
   },
   "minimum-stability": "dev",
-  "require": {}
+  "repositories": [
+    {
+      "url": "https://github.com/AlexandrLichi/Pet.git",
+      "type": "git"
+    }
+  ],
+  "require": {
+    "AlexandrLichi/Pet": "1.0"
+  }
 }
