@@ -1,7 +1,7 @@
 {
   "name": "php-framework/pet",
   "description": "PHP framework",
-  "version": "1.0.0.0",
+  "version": "1.0",
   "soursce": {
     "type": "git",
     "url": "https://github.com/AlexandrLichi/Pet.git",
