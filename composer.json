@@ -1,7 +1,12 @@
 {
   "name": "php-framework/pet",
   "description": "PHP framework",
-  "version":"1.0.0",
+  "authors": [
+    {
+      "name":"Alexandr",
+    "email":"lachinalexandr23@gmail.com"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "Pet\\": "vendor/Pet"
@@ -17,14 +22,6 @@
     ]
   },
   "minimum-stability": "dev",
-  "repositories": [
-    {
-      "url": "https://github.com/AlexandrLichi/Pet.git",
-      "type": "git"
-    }
-  ],
   "require": {
-    "php":">=8.0",
-    "php-framework/pet": "1.0"
   }
 }
